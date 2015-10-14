@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(function() {
   window.dancers = [];
 
-  $(".addDancerButton").on("click", function(event){
+  $(".addDancerButton").on("click", function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
      * As long as the "data-dancer-maker-function-name" attribute of a
@@ -17,20 +17,39 @@ $(document).ready(function(){
      */
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
     var jiggyDancerClassName = $(this).data("jiggy-dancer-class-name");
-
-    // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
+    if (dancerMakerFunction) {
+      var dancer = new dancerMakerFunction(
+        $("#dance-floor").height() * Math.random(),
+        $("#dance-floor").width() * Math.random(),
+        Math.random() * 1000,
+        jiggyDancerClassName
+      );
 
-    var dancer = new dancerMakerFunction(
-      $("#dance-floor").height() * Math.random(),
-      $("#dance-floor").width() * Math.random(),
-      Math.random() * 1000,
-      jiggyDancerClassName
-    );
+      dancer.$node.click(function(event) {
+        console.log('clicked');
+      });
 
-    $('#dance-floor').append(dancer.$node);
+      window.dancers.push(dancer);
+
+      $('#dance-floor').append(dancer.$node);
+    }
+  });
+
+  $("#line-up").on("click", function(event) {
+    for (var i = 0; i < window.dancers.length; i++) {
+      if (window.dancers[i].noStep !== 'undefined') {
+        window.dancers[i].noStep = true;
+      }
+    }
+
+    for (var i = 0; i < window.dancers.length; i++) {
+      window.dancers[i].setPosition(window.dancers[i].top, 0);
+    };
   });
 });
 
+var handleDancerClick = function () {
+  console.log('hello click');
+}

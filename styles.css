@@ -24,9 +24,16 @@ body, a:link, a:visited, a:active{
     #C0C0C0 20px
     )
 }
+.dancer {
+  width: 20px;
+  height: 20px;
+}
 .title, .addDancerButton{
   padding:5px 12px;
   float:right;
+}
+#line-up {
+  cursor: pointer;
 }
 .topbar {
   height:32px;
@@ -37,14 +44,26 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .blinkyDancer {
-  border:10px solid red;
-  border-radius:10px;
+  border:20px solid red;
+  border-radius:15px 20px 17px 25px;
   position:absolute;
 }
 .jiggyDancer {
   border:10px solid blue;
   border-radius:10px;
   position:absolute;
+}
+.steppingDancer {
+  border:10px solid orange;
+  border-radius:10px;
+  position:absolute;
+}
+.careltonDancer {
+  width: 100px;
+  height: 150px;
+  position: absolute;
+  /*background-image: url('http://giphy.com/gifs/smallworlds-lF1XZv45kIwMw');*/
+  z-index: 0;
 }
 
 .nav {
@@ -72,4 +91,3 @@ ul li:hover ul {
   visibility: visible;
 }
 
-ul li ul li
